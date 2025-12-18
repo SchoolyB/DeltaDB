@@ -1,0 +1,26 @@
+module main
+
+import & use @std
+import & use lib"../src/library"
+
+
+const DB_FILE string = "database.easydb"
+
+do main(){
+	using std
+    temp data [byte]
+    temp err Error
+
+    lib.create_db_file(DB_FILE)
+
+    data, err = lib.get_file_data(DB_FILE)
+    if err != nil {
+        println(err.message)
+        exit(EXIT_FAILURE)
+    }
+    println("data: ${data}")
+
+    temp dataStr string = lib.data_to_string(data)
+    println("data as string: ${dataStr}")
+
+}

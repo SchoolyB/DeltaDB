@@ -1,0 +1,32 @@
+module library
+
+import @std, @io, @bytes
+
+do create_db_file(f string) -> Error {
+    temp file, err = io.open(f, io.CREATE)
+	if err != nil{
+		return err
+	}
+
+	return nil
+}
+
+//Reads a file(f) and returns its content as [byte]
+do get_file_data(f string) -> ([byte], Error){
+    temp data [byte], err Error = io.read_bytes(f)
+    if err != nil {
+    	err = error("Error: Failed to read bytes in file")
+        return data, err
+    } or len(data) == 0 {
+    	err = error("Error: No data found in file")
+        return data, err
+    }
+
+    return data, nil
+}
+
+
+//Takes in data(d) of type [byte] and returns the string representation
+do data_to_string(d [byte]) -> string {
+    return bytes.to_string(d)
+}
