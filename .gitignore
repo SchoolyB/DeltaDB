@@ -1,2 +1,10 @@
 ez
-*.easydb
+*.deltadb
+*.delta
+.DS_STORE
+.ez
+*.bin
+*.exe
+*.dylib
+*.so
+*.out

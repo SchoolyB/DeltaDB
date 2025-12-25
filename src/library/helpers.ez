@@ -1,6 +1,6 @@
 module library
 
-import @std, @io, @bytes
+import @std, @io, @bytes, @time
 
 do create_db_file(f string) -> Error {
     temp file, err = io.open(f, io.CREATE)
@@ -29,4 +29,11 @@ do get_file_data(f string) -> ([byte], Error){
 //Takes in data(d) of type [byte] and returns the string representation
 do data_to_string(d [byte]) -> string {
     return bytes.to_string(d)
+}
+
+
+do get_timestamp() -> u64 {
+    temp stamp int = time.now()
+    temp casted = cast(stamp,u64)
+    return casted
 }
