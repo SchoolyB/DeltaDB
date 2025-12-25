@@ -1,36 +1,27 @@
 module main
 
-import & use @std
+import & use @std, @arrays
 import & use codec"../src/core/codec"
 import & use lib"../src/library"
+#suppress(ALL)
 
 
-const DB_FILE string = "database.easydb"
+const DB_FILE string = "database.delta"
 
 do main(){
-	//using std
- //   temp data [byte]
- //   temp err Error
 
- //   lib.create_db_file(DB_FILE)
+    temp data [byte]
+    temp err Error
 
- //   data, err = lib.get_file_data(DB_FILE)
- //   if err != nil {
- //       println(err.message)
- //       exit(EXIT_FAILURE)
- //   }
- //   println("data: ${data}")
+    create_db_file(DB_FILE)
 
- //   temp dataStr string = lib.data_to_string(data)
- //   println("data as string: ${dataStr}")
-    //temp result = codec.serialize_u64(257)
-
-    //temp counte = codec.deserialize_to_u64(result)
-    //println(counte)
-
-    temp stamp u64 = get_timestamp()
+    data, err = lib.get_file_data(DB_FILE)
+    if len(data) == 0 {
+        println("No data in file")
+    }
 
 
-    temp result = codec.serialize_u64(stamp)
-
+    //temp tStamp = get_timestamp()
+    //temp result = serialize_u64(tStamp)
 }
+
